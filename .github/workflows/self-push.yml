@@ -27,43 +27,13 @@ env:
   RUN_PT_TF_CROSS_TESTS: 1
 
 jobs:
-  check_runner_status:
-    name: Check Runner Status
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout transformers
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-
-      - name: Check Runner Status
-        run: python utils/check_self_hosted_runner.py --target_runners single-gpu-ci-runner-docker,multi-gpu-ci-runner-docker --token ${{ secrets.ACCESS_REPO_INFO_TOKEN }}
-
-  check_runners:
-    name: Check Runners
-    needs: check_runner_status
-    strategy:
-      matrix:
-        machine_type: [single-gpu, multi-gpu]
-    runs-on: [self-hosted, docker-gpu, '${{ matrix.machine_type }}']
-    container:
-      image: huggingface/transformers-all-latest-gpu-push-ci
-      options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
-    steps:
-      - name: NVIDIA-SMI
-        run: |
-          nvidia-smi
-
   setup:
     name: Setup
     needs: check_runners
     strategy:
       matrix:
         machine_type: [single-gpu, multi-gpu]
-    runs-on: [self-hosted, docker-gpu, '${{ matrix.machine_type }}']
-    container:
-      image: huggingface/transformers-all-latest-gpu-push-ci
-      options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       test_map: ${{ steps.set-matrix.outputs.test_map }}
