@@ -53,6 +53,8 @@ jobs:
       - name: try push
         run: |
           cd /transformers
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
           git checkout -b branchhhh
           touch a.txt
           git add .
