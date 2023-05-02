@@ -55,11 +55,11 @@ jobs:
           cd /transformers
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
-          git checkout -b branchhhh
-          touch a.txt
-          git add .
-          git commit -m "test"
-          git push --set-upstream origin branchhhh
+        #  git checkout -b branchhhh
+        #  touch a.txt
+        #  git add .
+        #  git commit -m "test"
+        #  git push --set-upstream origin branchhhh
 
       # Necessary to get the correct branch name and commit SHA for `workflow_run` event
       # We also take into account the `push` event (we might want to test some changes in a branch)
