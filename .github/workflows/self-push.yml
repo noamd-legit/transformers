@@ -41,22 +41,10 @@ jobs:
     #  options: --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          cd ..
-          mv transformers /
       - name: print env
         run: printenv
-      - name: Print remote
-        run: |
-          ls -lR
-          echo "----------------------------------"
-          ls /transformers
-          echo "----------------------------------"
-          cd /transformers
-          git remote -v
       - name: try push
         run: |
-          cd /transformers
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
         #  git checkout -b branchhhh
