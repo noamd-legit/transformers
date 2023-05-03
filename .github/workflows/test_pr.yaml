@@ -5,4 +5,4 @@ jobs:
   job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "123
+      - run: echo "123"
