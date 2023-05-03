@@ -1,0 +1,8 @@
+name: "Self-hosted runner (push-caller)"
+on: pull_request
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "123"
