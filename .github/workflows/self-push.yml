@@ -82,7 +82,7 @@ jobs:
           echo "env.CI_SHA = ${{ env.CI_SHA }}"
 
       - name: Update clone using environment variables
-        working-directory: /transformers
+        #working-directory: /transformers
         run: |
           echo "original branch = $(git branch --show-current)"
           git fetch && git checkout ${{ env.CI_BRANCH }}
@@ -91,14 +91,14 @@ jobs:
           echo "log = $(git log -n 1)"
 
       - name: Cleanup
-        working-directory: /transformers
+        #working-directory: /transformers
         run: |
           rm -rf tests/__pycache__
           rm -rf tests/models/__pycache__
           rm -rf reports
 
       - name: Show installed libraries and their versions
-        working-directory: /transformers
+        #working-directory: /transformers
         run: pip freeze
 
       - name: Fetch the tests to run
