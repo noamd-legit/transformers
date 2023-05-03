@@ -36,9 +36,9 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       test_map: ${{ steps.set-matrix.outputs.test_map }}
-    container:
-      image: huggingface/transformers-all-latest-gpu-push-ci
-      options: --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
+    #container:
+    #  image: huggingface/transformers-all-latest-gpu-push-ci
+    #  options: --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     steps:
       - name: print env
         run: printenv
