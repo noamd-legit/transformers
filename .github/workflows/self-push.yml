@@ -40,6 +40,10 @@ jobs:
     #  image: huggingface/transformers-all-latest-gpu-push-ci
     #  options: --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     steps:
+      - uses: actions/checkout@v3
+      - run: |
+          cd ..
+          mv transformers /
       - name: print env
         run: printenv
       - name: Print remote
